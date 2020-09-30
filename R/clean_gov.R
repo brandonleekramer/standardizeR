@@ -14,7 +14,7 @@
 #' }
 
 clean_gov <- function(df, institution){
-  govData <- readr::read_rds("data-raw/government_data.rda")
+  govData <- readr::read_rds("data/government_data.rda")
   institution <- enquo(institution)
   df <- df %>%
     #as.data.table() %>%
