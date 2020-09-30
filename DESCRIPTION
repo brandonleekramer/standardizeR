@@ -1,0 +1,23 @@
+Package: standardizeR
+Type: Package
+Title: Package to standardize institutions and location data from messy strings.
+Version: 0.1.0
+Author@R: c(person("Brandon", "Kramer", role = c("aut", "cre"),
+            email = "brandonleekramer@gmail.com"),
+            comment = c(ORCID = "0000-0002-3233-5310"))
+Maintainer: The package maintainer <brandonleekramer@gmail.com>
+Description: This package uses tidy data frames to standardize institutions 
+    and location data from messy strings. Core functions clean institutions from  
+    academic, government, and corporate institutions as well as cities and countries
+    from around the world.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: TRUE
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Imports: 
+    dplyr, 
+    data.table,
+    maditr
+Depends: 
+    R (>= 2.10)
