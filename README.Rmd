@@ -1,0 +1,94 @@
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  message = FALSE
+)
+suppressPackageStartupMessages(library(ggplot2))
+theme_set(theme_light())
+```
+
+# standardizeR: R package for standardizing messy institution and location strings
+
+**Authors:** [Brandon L. Kramer](https://www.brandonleekramer.com/)<br/>
+**License:** [MIT](https://opensource.org/licenses/MIT)
+
+### Installation
+
+The most current version of the textnets package is currently available on GitHub. To install standardizeR, the devtools package must also be installed.
+
+```{r, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("brandonleekramer/standardizeR")
+library(standardizeR)
+```
+
+### Overview 
+
+The `standardizeR` package compiles a number of products from an ongoing collaboration between the University of Virginia's Biocomplexity Institute and the National Center for Science and Engineering Statistics dedicated to tracking the source and impact of open-source software. One goal of this project was to take GitHub contributor data and classify users into economic sectors. To do this, our team developed a series of functions to standardize the self-reported user data while compiling and cleaning datasets used to match GitHub contributors to institutions within each 
+
+This package includes four core functions: 
+
+- `clean_academic` and `clean_gov` clean messy string data from academic and government institutions 
+- `clean_county_code` converts messy location strings to a standardized country code
+- `sectorize` classifies cleaned institutional string data into one of five economic sectors, including the academic, government, corporate, nonprofit and household sectors 
+
+The package also includes *n* cleaned datasets:  
+
+- The `hipo_labs` dataset includes over *n* academic institutions and email domains from around the world
+- The `full`
+
+### Standardizing messy government institution strings
+
+```{r}
+library(dplyr)
+data("usgov_azindex")
+
+usgov_clean <- usgov_azindex %>% 
+  clean_gov(agency) %>% 
+  select(agency, institution)
+
+usgov_clean
+```
+
+### Standardizing messy academic institution strings 
+
+```{r}
+data("hipo_labs")
+
+academic_clean <- hipo_labs %>% 
+  clean_gov(agency) %>% 
+  select(agency, institution)
+
+academic_clean
+```
+
+### Standardizing messy strings from self-reported country data  
+
+```{r}
+
+```
+
+### Classify data into economic sectors based   
+
+```{r}
+
+```
+
+
+### TO DO: 
+
+Use these repos as guidelines for detailing data and functions 
+https://github.com/specialistgeneralist/geodiverse
+https://github.com/cbail/textnets
+https://b-rodrigues.github.io/modern_R/package-development.html
+https://github.com/juliasilge/tidytext
+
+
+
+
+

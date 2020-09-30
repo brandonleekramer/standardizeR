@@ -3,9 +3,10 @@
 #' @param institution Institution column you are standardizing.
 #' @return A data frame with descriptive statistics. If you are only interested in certain columns
 #' you can add these columns.
-#' @import dplyr mutate
-#' @importFrom stringr str_replace_all str_detect
-#' @importFrom tidyr separate
+#' @import dplyr
+#' @import data.table
+#' @import maditr
+#' @import tidyr
 #' @importFrom magrittr %>%
 #' @export
 #' @examples
@@ -14,21 +15,20 @@
 #' describe(dataset, col1, col2)
 #' }
 
-clean_gov <- function(df, institution){
-  
+clean_academic <- function(df, institution){
   # pulls in government strings to recode 
-  gov_df <- load(file = "data/gov_strings.rda")
+  academic_df <- readr::read_csv("data-raw/academic_data.csv")
   
   institution <- enquo(institution)
   df <- df %>%
     dplyr::mutate(institution = tolower(!!institution),
-           institution = trimws(institution)) %>%
+                  institution = trimws(institution)) %>%
     tidyr::separate(institution, ("institution"), "\\(", extra = "drop") %>%
-    dplyr::mutate(institution = stringr::str_replace_all(institution, 
-                  "\\b(united states|united states of america)\\b", "u.s."),
-           institution = ifelse(test = stringr::str_detect(string = institution,
-                                pattern = paste0("\\b(?i)(",gov_df$original_string,")\\b")),
-                                yes = gov_df$cleaned_string, no = institution))
+    dplyr::mutate(institution = str_replace_all(institution, "\\b(united states|united states of america)\\b", "u.s."),
+                  institution = ifelse(test = str_detect(
+                    string = institution,
+                    pattern = paste0("\\b(?i)(",academic_df$original_string,")\\b")),
+                    yes = academic_df$cleaned_string, no = institution))
   df
 }
 
@@ -39,7 +39,15 @@ clean_gov <- function(df, institution){
 # add in `end_str_only` parameter
 # add in `finish_with_caps` parameter 
 # add in `abbreviations` parameter
-# add in `specific` and `general` options based on different datasets 
+# ask hipo_labs about updated their dataset and including it in our package 
+# 
+
+
+
+
+
+
+
 
 
 
