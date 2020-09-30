@@ -6,6 +6,8 @@
 #' @import dplyr
 #' @import data.table
 #' @import maditr
+#' @import tidyr
+#' @importFrom magrittr %>%
 #' @export
 #' @examples
 #' \dontrun{
@@ -14,7 +16,7 @@
 #' }
 
 clean_gov <- function(df, institution){
-  govData <- readr::read_rds("data-raw/government_data.csv")
+  govData <- readr::read_csv("data-raw/government_data.csv")
   institution <- enquo(institution)
   df <- df %>%
     #as.data.table() %>%
