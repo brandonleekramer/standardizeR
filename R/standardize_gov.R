@@ -14,11 +14,12 @@
 #' describe(dataset, col1, col2)
 #' }
 
-clean_gov <- function(df, institution){
+standardize_gov <- function(df, institution){
   
   # pulls in government strings to recode 
   #gov_df <- load(file = "data/gov_strings.rda")
-  gov_df <- readr::read_csv("data-raw/gov_strings.csv") %>% select(-exclude_from_final)
+  data(gov_strings)
+  #gov_df <- readr::read_csv("data-raw/gov_strings.csv") %>% select(-exclude_from_final)
   
   institution <- enquo(institution)
   df <- df %>%
@@ -32,8 +33,8 @@ clean_gov <- function(df, institution){
                   institution = stringr::str_replace_all(institution, 
                   "\\b(dept|dept.)\\b", "department"),
                   institution = ifelse(test = stringr::str_detect(string = institution,
-                  pattern = paste0("\\b(?i)(",gov_df$original_string,")\\b")),
-                  yes = gov_df$cleaned_string, no = institution))
+                  pattern = paste0("\\b(?i)(",gov_strings$original_string,")\\b")),
+                  yes = gov_strings$cleaned_string, no = institution))
   df
 }
 

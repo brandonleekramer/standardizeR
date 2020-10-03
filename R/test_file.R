@@ -7,12 +7,10 @@ library("dplyr")
 
 
 
-az_index <- readr::read_csv("data/az_index.csv")
 source("R/clean_gov.R")
-
-test <- az_index %>% 
-  clean_gov(Agency) %>% 
-  select(Agency, institution)
+data(usgov_azindex)
+test <- usgov_azindex %>% 
+  clean_gov(agency) 
 
 
 
