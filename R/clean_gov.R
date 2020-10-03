@@ -17,18 +17,23 @@
 clean_gov <- function(df, institution){
   
   # pulls in government strings to recode 
-  gov_df <- load(file = "data/gov_strings.rda")
+  #gov_df <- load(file = "data/gov_strings.rda")
+  gov_df <- readr::read_csv("data-raw/gov_strings.csv") %>% select(-exclude_from_final)
   
   institution <- enquo(institution)
   df <- df %>%
     dplyr::mutate(institution = tolower(!!institution),
-           institution = trimws(institution)) %>%
+                  institution = trimws(institution)) %>%
     tidyr::separate(institution, ("institution"), "\\(", extra = "drop") %>%
+    # standardize variations in u.s.
     dplyr::mutate(institution = stringr::str_replace_all(institution, 
-                  "\\b(united states|united states of america)\\b", "u.s."),
-           institution = ifelse(test = stringr::str_detect(string = institution,
-                                pattern = paste0("\\b(?i)(",gov_df$original_string,")\\b")),
-                                yes = gov_df$cleaned_string, no = institution))
+                  "\\b(united states|united states of america|usa|u.s.a.)\\b", "u.s."),
+    # standardize department 
+                  institution = stringr::str_replace_all(institution, 
+                  "\\b(dept|dept.)\\b", "department"),
+                  institution = ifelse(test = stringr::str_detect(string = institution,
+                  pattern = paste0("\\b(?i)(",gov_df$original_string,")\\b")),
+                  yes = gov_df$cleaned_string, no = institution))
   df
 }
 

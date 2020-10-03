@@ -1,4 +1,5 @@
 
 # government_data
-government_data <- readr::read_csv("data-raw/government_data.csv")
-devtools::use_data(government_data, overwrite = TRUE)
+gov_strings <- readr::read_csv("data-raw/gov_strings.csv")
+use_data(gov_strings, overwrite = TRUE, compress = "xz")
+

@@ -1,0 +1,12 @@
+original_string,cleaned_string,exclude_from_final
+judicial branch|federal agency - judicial,u.s. judicial branch,
+legislative branch|the legislative branch|federal agency - legislative,u.s. legislative branch,
+federal agency - executive|^executive department sub|executive branch: departments|executive department,u.s. executive branch,
+quasi-official agencies,u.s. quasi-official agencies,1
+international organizations,u.s. international organizations,1
+^export bank|export-import bank of the u.s.,export/import bank of the u.s.,
+^geological survey,u.s. geological survey,1
+^fossil energy,u.s. fossil energy,1
+^forest service,u.s. forest service,1
+^senate,u.s. senate,1
+^mint,u.s. mint,1
