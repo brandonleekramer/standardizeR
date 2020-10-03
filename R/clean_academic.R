@@ -17,7 +17,7 @@
 
 clean_academic <- function(df, institution){
   # pulls in government strings to recode 
-  academic_df <- readr::read_csv("data-raw/academic_data.csv")
+  #academic_df <- readr::read_csv("data-raw/academic_data.csv")
   
   institution <- enquo(institution)
   df <- df %>%
