@@ -7,10 +7,10 @@ library("dplyr")
 
 
 
-source("R/clean_gov.R")
+source("R/standardize_gov.R")
 data(usgov_azindex)
 test <- usgov_azindex %>% 
-  clean_gov(agency) 
+  standardize_gov(agency) 
 
 
 
