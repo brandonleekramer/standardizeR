@@ -1,6 +1,6 @@
 
-govData <- readr::read_csv("data/gov_strings.csv")
-readr::write_rds(govData, "data/government_data.rds")
+#govData <- readr::read_csv("data/gov_strings.csv")
+#readr::write_rds(govData, "data/government_data.rds")
 
 library(tidytext)  
  ?unnest_tokens
