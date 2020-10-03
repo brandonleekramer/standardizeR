@@ -5,9 +5,10 @@ devtools::install_github("brandonleekramer/standardizeR")
 library("standardizeR")
 library("dplyr")
 
+st
 
 
-source("R/standardize_gov.R")
+#source("R/standardize_gov.R")
 data(usgov_azindex)
 test <- usgov_azindex %>% 
   standardize_gov(agency) 
